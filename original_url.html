@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            background-color:url(short.jpg);
+            text-align: center;
+            margin-top: 20%;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+        input {
+            border-radius: 20px;
+        }
+        a {
+            color: rgba(226, 88, 19, 0.621); 
+            text-decoration: none;
+        }
+        a:hover {
+            color: rgb(255, 255, 255); 
+        }
+        h1{
+            margin-top: 2px;
+            padding-top: 1px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <script>
+       $(function(){
+        $('form').on('submit', function(e){
+          e.preventDefault();
+
+          $.ajax({
+            type: 'post',
+            url: 'get_url.php',
+            data: $('form').serialize(),
+            success: function(message){
+              $('#response').html(message);
+            }
+          });
+        });
+       });
+    </script>
+</head>
+
+<body background="short.jpg" >
+    <h1 style=" color: white;">URL_Shortner</h1>
+    <form id="urlForm">
+        
+        <input type="text" id="shortCode" placeholder="Enter the code" name="sc" style="width: 300px; height: 30px;">
+        <br><br>
+        <input type="submit" style="width: 90px; height: 30px;" value="Submit">
+    </form>
+    <div id="response" style="color: white; font-size: 50px;"></div>
+</body>
+
+</html>

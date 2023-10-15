@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background: url(long.jpg);
+            text-align: center;
+            margin-top: 20%;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+
+        input {
+            border-radius: 20px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+       $(function(){
+        $('#urlForm').on('submit', function(e){
+          e.preventDefault();
+
+          $.ajax({
+            type: 'post',
+            url: 'save_url.php',
+            data: $('#urlForm').serialize(),
+            success: function(message){
+              $('#result').html(message);
+            }
+          });
+        });
+       });
+    </script>
+</head>
+
+<body>
+    
+    <form id="urlForm">
+        <input type="text" name="url_value" placeholder="Enter URL" style="width: 300px; height:30px;">
+        <br>
+        <br>
+        <input type="submit" name="short_url" style="width: 90px; height: 30px;">
+    </form>
+    <br><br>
+    <div id="result" style="color: white; font-size: 50px; "></div>
+</body>
+
+</html>
